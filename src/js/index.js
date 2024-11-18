@@ -1,8 +1,16 @@
-const buttonElement = document.getElementById('button');
+import '../css/styles.css';
 
-const printClick = (event, name) => {
-	console.log(name);
-	console.log(event);
-};
+import { buttonGenerateElement, optionsElement, rangeElement, lengthTextElement } from './dom';
+import { checkPasswordOptions, generatePassword, setPasswordLenght } from './password-functions';
+import { passwordOptions } from './password-options';
 
-buttonElement.addEventListener('click', event => printClick(event, 'Dorian'));
+lengthTextElement.textContent = passwordOptions.passwordLength;
+
+rangeElement.addEventListener('input', setPasswordLenght);
+
+buttonGenerateElement.addEventListener('click', generatePassword);
+
+optionsElement.addEventListener('click', event => {
+	if (event.target.type !== 'checkbox') return;
+	checkPasswordOptions();
+});
